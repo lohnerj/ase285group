@@ -1,0 +1,29 @@
+Team Members
+Team Member 1
+Mark a team leader
+Team Member 2
+Specify the role (if the team member has one)
+Team Rules
+Write team rules here or link the team rules
+Team Tools
+link the team leader's GitHub repository
+Invite other members as collaborators
+Invite the professor if it is private
+link the project management page
+Invite the professor so that he can access the information
+link any tool pages if necessary
+Product Backlog
+List all the product backlog here or link here
+All the backlog items should have (a) epic/requirements, (b) who is going to do it, (c) deadline, and (d) tests; also, each item should have an id to trace.
+Even though the product backlog can be found in the project management tool, the team should make the backlog information easily accessible from the Canvas page (directly or using online documentation tools such as GitHub or Google Docs).
+The product backlog can be modified or updated, so in this case, it's a good idea to upload them in GitHub and trace the change. 
+Spring 1 Backlog
+List all the Sprint 1 Backlog from the Product Backlog.
+Spring 2 Backlog
+List all the Sprint 2 Backlog from the Product Backlog.
+Project Progress
+Sprint 1
+Write the total requirements, tests, and the burndown and test coverage rates (use SE_project.pdf as a reference).
+Sprint 1 (Week 1)
+
+Write last week's requirements, tests, burndown, and test coverage rates.
