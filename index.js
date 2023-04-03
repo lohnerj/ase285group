@@ -4,11 +4,14 @@
 // npm install method-override
 // nodemon ./index.js
 // Access this server with http://localhost:5500/pet or http://localhost:5500/
-var db;
 
-const DATABASE = 'todoapp';
-const TASKS = 'Tasks';
-const COUNTER = 'counter';
+/*
+*KNOWN ISSUES!: 
+- Counter collection isn't used at all for the API functionality. It currently just exists. 
+- ListJSON is broken, and I have no idea what it's purpose is
+*/
+
+var db;
 
 //Updated variables for express, mongoose, and dotenv
 const mongoose = require("mongoose");
@@ -18,15 +21,14 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 const { taskModel, counterModel } = require('./models/models.ejs');
-//const counterModel = require('./models/Counter.ejs')
-//const methodOverride = require('method-override')
 
+//Setting webapp to use bodyparser and urlencoder
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.urlencoded({ extended: true }))
+//Setting express to use EJS
 app.set('view engine', 'ejs');
 //IMPORTANT: *Not sure what this does
 app.use('/public', express.static('public'));
-//app.use(methodOverride('_method'))
 
 //Code block to startup the web server
 main().catch(err => console.log(err));
@@ -44,12 +46,12 @@ app.get('/', function (req, resp) {
         console.error(e);
     }
 });
-
+//API call to add task to the database
 app.post('/add', function (req, resp) {
     runAddPost(req, resp);
     resp.redirect('/')
 });
-
+//Function to add task to the database
 async function runAddPost(req, resp) {
     try {
         //Random number is generated and set as the ID
@@ -60,24 +62,6 @@ async function runAddPost(req, resp) {
     } catch (e) {
         console.error(e);
     }
-    // try {
-    //     const counter = db.collection(COUNTER);
-    //     const posts = db.collection(TASKS);
-
-    //     let query = { name: 'Total Post' };
-    //     let res = await counter.findOne(query);
-    //     console.log(res);
-    //     const totalPost = res.totalPost;
-
-    //     query = { _id: totalPost + 1, title: req.body.title, date: req.body.date };
-    //     res = await posts.insertOne(query);
-
-    //     query = { name: 'Total Post' };
-    //     let stage = { $inc: { totalPost: 1 } };
-    //     await counter.updateOne(query, stage);
-    // } catch (e) {
-    //     console.error(e);
-    // }
 }
 
 app.get('/list', async function (req, res, next) {
@@ -96,10 +80,10 @@ app.get('/list', async function (req, res, next) {
     }
 });
 
-//IMPORTANT: *I have no idea what the point of this function is
+//IMPORTANT: *I have no idea what the point of this function is and it's currently broken cause it doesn't use Mongoose
 app.get('/listjson', async function (req, resp) {
     try {
-        const posts = db.collection(TASKS);
+        //const posts = db.collection(TASKS);
         const res = await posts.find().toArray();
         resp.send(res)
     } catch (e) {
@@ -107,6 +91,7 @@ app.get('/listjson', async function (req, resp) {
     }
 });
 
+//Deletes task using its object ID
 app.delete('/delete', async function (req, resp) {
     try {
         const taskID = await (req.body._id)
@@ -117,25 +102,9 @@ app.delete('/delete', async function (req, resp) {
         console.error(e)
         resp.status(500).send({ error: 'Error deleting task' });
     }
-    // req.body._id = parseInt(req.body._id); // the body._id is stored in string, so change it into an int value
-    // console.log(req.body._id);
-    // try {
-    //     const counter = db.collection(COUNTER);
-    //     const posts = db.collection(TASKS)
-    //     const res = await posts.deleteOne(req.body);
-
-    //     const query = { name: 'Total Post' };
-    //     const stage = { $inc: { totalPost: -1 } };
-    //     await counter.updateOne(query, stage);
-
-    //     console.log('Delete complete')
-    //     resp.send('Delete complete')
-    // }
-    // catch (e) {
-    //     console.error(e);
-    // }
 });
 
+//Retrieves details for specific task
 app.get('/detail/:id', async function (req, resp) {
     try {
         const taskID = await (req.params.id)
