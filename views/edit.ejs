@@ -22,13 +22,14 @@
         <input value="<%= data._id %>" name="id" style="display : none">
         <div class="form-group">
           <label>Update: What to do today</label>
-          <input type="text" class="form-control" name="title" value=<%=data.title %> />
+          <input id="title" type="text" class="form-control" name="title" value=<%=data.title %> />
         </div>
         <div class="form-group">
           <label>Update: Date</label>
-          <input type="text" class="form-control" name="date" value=<%=data.date %> />
+          <input id="date" type="text" class="form-control" name="date" value=<%=data.date %> />
         </div>
-        <button type="submit" class="btn btn-outline-secondary">Submit</button>
+        <button type="button" class="update" data-task-id="<%= data.taskID%>">Update</button>
+        <!-- <button type="submit" class="btn btn-outline-secondary">Submit</button> -->
       </form>
     </div>
 
@@ -43,6 +44,27 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script>
+        const url = window.location.href
+        const matches = url.match(/\/([^/]+)$/);
+        const taskID = matches[1];
+        $('.update').click(function (e) {
+            e.preventDefault();
+            const updateTask = {
+                title: document.getElementById("title").value,
+                date: document.getElementById("date").value
+            };
+            $.ajax({
+                method: 'PUT',
+                url: `/update/${taskID}`,
+                data: updateTask
+            }).done((res) => {
+                window.location.href = `/list`; // refresh the page
+            }).fail((xhr, code, err) => {
+              // failure
+            });
+        });  
+    </script>
 </body>
-
 </html>

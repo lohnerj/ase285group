@@ -1,0 +1,35 @@
+const mongoose = require('mongoose');
+const taskSchema = new mongoose.Schema({
+    taskID: {
+        type: String,
+        required: true,
+    },
+    title: {
+        type: String,
+        required: true,
+    },
+    date: {
+        type: String,
+        required: true,
+    }
+});
+
+const taskModel = mongoose.model('Task', taskSchema);
+
+const counterschema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    totalPost: {
+        type: Number,
+        required: true,
+    }
+});
+
+const counterModel = mongoose.model('Counter', counterschema);
+
+module.exports = {
+    taskModel,
+    counterModel
+};
