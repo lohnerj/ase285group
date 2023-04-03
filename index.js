@@ -1,14 +1,18 @@
-// npm install express
-// npm install ejs
-// npm install -g nodemon
-// npm install method-override
-// nodemon ./index.js
-// Access this server with http://localhost:5500/pet or http://localhost:5500/
 
 /*
+Run these Commands in order:
+npm install express
+npm install ejs
+npm install -g nodemon
+npm install method-override
+nodemon ./index.js
+Access this server with http://localhost:5500/
+
 *KNOWN ISSUES!: 
 - Counter collection isn't used at all for the API functionality. It currently just exists. 
 - ListJSON is broken, and I have no idea what it's purpose is
+
+MONGODB Compass Connection String- mongodb+srv://Administrator:administrator@asecourses.jsbbhi4.mongodb.net/todoapp
 */
 
 var db;
