@@ -58,9 +58,18 @@ app.post('/add', function (req, resp) {
 //Function to add task to the database
 async function runAddPost(req, resp) {
     try {
-        //Random number is generated and set as the ID
-        let number = await (Math.floor(Math.random() * 200000));
-        const task = await new taskModel({ taskID: number, title: req.body.title, date: req.body.date })
+        //If counter doesn't exist in the database, then create one
+        if(await counterModel.findOne({name: "Total"}) == null){
+            const counter = await new counterModel({name: "Total", count: 0})
+            await counter.save();
+        }
+        //taskID is generated based on Total count in Counter collection
+        const totalCounter = await counterModel.findOne({name: "Total"}).exec()
+        console.log(totalCounter)
+        //let number = await (Math.floor(Math.random() * 200000));
+        const task = await new taskModel({ taskID: (totalCounter.count + 1), title: req.body.title, date: req.body.date })
+        //Updates total count in Counter collection
+        await counterModel.findOneAndUpdate({name: "Total"}, {count: totalCounter.count + 1});
         //Saves new task to the Database
         await task.save();
     } catch (e) {
@@ -98,8 +107,11 @@ app.get('/listjson', async function (req, resp) {
 //Deletes task using its object ID
 app.delete('/delete', async function (req, resp) {
     try {
+        //Collects taskID from body request
         const taskID = await (req.body._id)
         console.log(req.body._id)
+        totalCount = await counterModel.findOne({name: "Total"})
+        await counterModel.findOneAndUpdate({name : "Total"}, {count: totalCount.count - 1})
         await taskModel.findOneAndDelete({ _id: taskID })
         console.log("Successfully deleted task")
     } catch (e){
