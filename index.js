@@ -9,7 +9,7 @@ nodemon ./index.js
 Access this server with http://localhost:5500/
 
 *KNOWN ISSUES!: 
-- Counter collection isn't used at all for the API functionality. It currently just exists. 
+- Currently the taskID value will just be created based on the total number of tasks in the database + 1. I figure it's not a big deal because every task already has a perfectly unique _id
 - ListJSON is broken, and I have no idea what it's purpose is
 
 MONGODB Compass Connection String- mongodb+srv://Administrator:administrator@asecourses.jsbbhi4.mongodb.net/todoapp
@@ -67,7 +67,7 @@ async function runAddPost(req, resp) {
         const totalCounter = await counterModel.findOne({name: "Total"}).exec()
         console.log(totalCounter)
         //let number = await (Math.floor(Math.random() * 200000));
-        const task = await new taskModel({ taskID: (totalCounter.count + 1), title: req.body.title, date: req.body.date })
+        const task = await new taskModel({ taskID: (totalCounter.count + 1), title: req.body.title, date: req.body.date})
         //Updates total count in Counter collection
         await counterModel.findOneAndUpdate({name: "Total"}, {count: totalCounter.count + 1});
         //Saves new task to the Database
@@ -76,7 +76,7 @@ async function runAddPost(req, resp) {
         console.error(e);
     }
 }
-
+//GET API to load list.ejs
 app.get('/list', async function (req, res, next) {
     try {
         //Finds all tasks currently stored in the database
@@ -90,6 +90,18 @@ app.get('/list', async function (req, res, next) {
         console.error(error);
         //send the error as a response
         res.status(500).send({ error: 'Error getting tasks' });
+    }
+});
+//GET API to load manual.ejs page
+app.get('/manual', async function (req, res, next) {
+    try {
+        //renders the manual page
+        res.render('manual.ejs');
+    } catch (error) {
+        //display the error
+        console.error(error);
+        //send the error as a response
+        res.status(500).send({ error: 'Error rendering manual' });
     }
 });
 
@@ -110,8 +122,6 @@ app.delete('/delete', async function (req, resp) {
         //Collects taskID from body request
         const taskID = await (req.body._id)
         console.log(req.body._id)
-        totalCount = await counterModel.findOne({name: "Total"})
-        await counterModel.findOneAndUpdate({name : "Total"}, {count: totalCount.count - 1})
         await taskModel.findOneAndDelete({ _id: taskID })
         console.log("Successfully deleted task")
     } catch (e){
@@ -142,10 +152,10 @@ app.get('/update/:id', async function (req, resp) {
         if(task) {
             //Render edit.js with task information
             resp.render('edit.ejs', {data : task})
-            console.log("Post has been found and now is being displayed")
+            console.log("Task has been found and now is being displayed")
         //If task doesn't exist then don't send an error
         } else {
-            resp.status(404).send("Post doesn't exist");
+            resp.status(404).send("Taskdoesn't exist");
         }
     } catch (e) {
         console.error(e)
@@ -178,6 +188,6 @@ app.put('/update/:id', async function (req, resp) {
         //display the error
         console.log(error);
         //send the error as a response
-        resp.status(500).send({ error: 'Error updating post' });
+        resp.status(500).send({ error: 'Error updating post information' });
     }
 });
