@@ -76,6 +76,7 @@ async function runAddPost(req, resp) {
         console.error(e);
     }
 }
+
 //GET API to load list.ejs
 app.get('/list', async function (req, res, next) {
     try {
@@ -92,6 +93,7 @@ app.get('/list', async function (req, res, next) {
         res.status(500).send({ error: 'Error getting tasks' });
     }
 });
+
 //GET API to load manual.ejs page
 app.get('/manual', async function (req, res, next) {
     try {
@@ -191,3 +193,5 @@ app.put('/update/:id', async function (req, resp) {
         resp.status(500).send({ error: 'Error updating post information' });
     }
 });
+
+module.exports = index;
