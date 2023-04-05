@@ -7,8 +7,6 @@ test('adds 1 + 2 to equal 3', () => {
     expect(sum(1,2)).toBe(3);
 })
 
-beforeEach((done) => {
-    mongoose.connect("mongodb://localhost:27017/JestDB",
-      { useNewUrlParser: true, useUnifiedTopology: true },
-      () => done());
+test("GET /", async () => {
+    await supertest(app).get("/").expect(200)
   });

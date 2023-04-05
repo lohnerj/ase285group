@@ -85,7 +85,7 @@ app.get('/list', async function (req, res, next) {
         //Creates query out of tasklist defined above
         const query = { posts: tasks };
         //renders the list page using the tasks above
-        res.render('list.ejs', query);
+        await res.render('list.ejs', query);
     } catch (error) {
         //display the error
         console.error(error);
@@ -193,5 +193,3 @@ app.put('/update/:id', async function (req, resp) {
         resp.status(500).send({ error: 'Error updating post information' });
     }
 });
-
-module.exports = index;
