@@ -1,0 +1,9 @@
+.icon-preview {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+      }
+.icon-preview span {
+font-size: 36px;
+margin-right: 10px;
+}

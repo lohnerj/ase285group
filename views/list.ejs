@@ -6,9 +6,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+	
+	<!-- Google Icons CSS -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" type="text/css" href="./resources/stylesheet.css">
 
   <title>Document</title>
 </head>
@@ -19,6 +23,7 @@
     <ul class="list-group">
       <% for (var i=0; i < posts.length; i++){ %>
         <li class="list-group-item">
+		<i class="material-icons" style="font-size:48px;"><%= posts[i].icon %></i>
           <h4> Title : <%= posts[i].title %>
           </h4>
           <p> Date : <%= posts[i].date %>
