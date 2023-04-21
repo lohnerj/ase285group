@@ -125,7 +125,7 @@ app.delete('/delete', async function (req, resp) {
         const taskID = await (req.body._id)
         console.log(req.body._id)
         await taskModel.findOneAndDelete({ _id: taskID })
-        console.log("Successfully deleted task")
+        console.log("Successfully deleted task");
     } catch (e){
         console.error(e)
         resp.status(500).send({ error: 'Error deleting task' });
