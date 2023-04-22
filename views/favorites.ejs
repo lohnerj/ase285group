@@ -9,7 +9,6 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 
   <title>Document</title>
 </head>
@@ -19,12 +18,11 @@
 
     <ul class="list-group">
       <% for (var i=0; i < posts.length; i++){ %>
+        <% if (posts[i].favorite == false) {
+            console.log("Conditional working")
+            continue;
+            } %>
         <li class="list-group-item">
-          <% if (posts[i].favorite == true) { %>
-            <button type="button" class="btn btn-secondary text favorite" data-id="<%= posts[i]._id %>"><i class="fas fa-star fa-lg text-warning"></i> Favorite</button>
-          <% } else { %>
-            <button type="button" class="btn btn-secondary text favorite" data-id="<%= posts[i]._id %>"><i class="fas fa-star fa-lg text-dark"></i> Favorite</button>
-          <% } %>
           <h4> Title : <%= posts[i].title %>
           </h4>
           <p> Date : <%= posts[i].date %>
@@ -34,7 +32,6 @@
           <button class="delete" data-id="<%= posts[i]._id %>">Delete</button>
           <button class="detail" data-id="<%= posts[i]._id %>">Details</button>
           <button class="edit" data-id="<%= posts[i]._id %>">Edit</button>
-          
         </li>
         <% } %>
     </ul>
@@ -73,16 +70,6 @@
       const taskID = btn.dataset.id;
       btn.addEventListener('click', () => {
         window.location.href = `/update/${taskID}`;
-      });
-    });
-    </script>
-    <script>
-      const favoriteBtns = document.querySelectorAll('.favorite');
-      favoriteBtns.forEach((btn) => {
-      const taskID = btn.dataset.id;
-      btn.addEventListener('click', () => {
-        console.log("Event listener working")
-        window.location.href = `/updateFavorite/${taskID}`;
       });
     });
     </script>

@@ -106,6 +106,22 @@ app.get('/manual', async function (req, res, next) {
         res.status(500).send({ error: 'Error rendering manual' });
     }
 });
+//GET API to load favorites.ejs
+app.get('/favorites', async function (req, res, next) {
+    try {
+        //Finds all tasks currently stored in the database
+        const tasks = await taskModel.find().exec();
+        //Creates query out of tasklist defined above
+        const query = { posts: tasks };
+        //renders the list page using the tasks above
+        await res.render('favorites.ejs', query);
+    } catch (error) {
+        //display the error
+        console.error(error);
+        //send the error as a response
+        res.status(500).send({ error: 'Error getting favorites tasks page' });
+    }
+});
 
 //IMPORTANT: *I have no idea what the point of this function is and it's currently broken cause it doesn't use Mongoose
 app.get('/listjson', async function (req, resp) {
@@ -192,4 +208,44 @@ app.put('/update/:id', async function (req, resp) {
         //send the error as a response
         resp.status(500).send({ error: 'Error updating post information' });
     }
+});
+
+//update a task information with a new favorite
+app.get('/updateFavorite/:id', async function (req, resp) {
+    try {
+        //Setting task parameters
+        const taskID = (req.params.id);
+        const updatedTask = req.body;
+        const options = { new: true };
+        //Finds current boolean value of favorite and reverses it for the specified task
+        let newFavorite;
+        currentTask = await taskModel.findOne({_id: taskID})
+        console.log(currentTask.favorite)
+        if(currentTask.favorite == true){
+            newFavorite = false
+        } else {
+            newFavorite = true
+        }
+        //Updates task with reversed favorite value
+        const task = await taskModel.findOneAndUpdate({_id: taskID}, {favorite: newFavorite}, options);
+
+        if (task) {
+            //Finds all tasks currently stored in the database
+            const tasks = await taskModel.find().exec();
+            //Creates query out of tasklist defined above
+            const query = { posts: tasks };
+        } else {
+            //sends the error as a response
+            resp.status(404).send({ error: `Error Updating task information` });
+        }
+    } catch (error) {
+        //display the error
+        console.log(error);
+        //send the error as a response
+        resp.status(500).send({ error: 'Error updating post information' });
+    } finally {
+        //console.log("Redirecting to list")
+        resp.redirect('/list')
+    }
+    
 });
