@@ -22,7 +22,8 @@
 
     <ul class="list-group">
       <% for (var i=0; i < posts.length; i++){ %>
-        <li class="list-group-item">
+	  
+		<li class="list-group-item" style="">
 		<i class="material-icons" style="font-size:48px;"><%= posts[i].icon %></i>
           <h4> Title : <%= posts[i].title %>
           </h4>
@@ -75,6 +76,15 @@
       });
     });
     </script>
+	<script>
+	if (localStorage.getItem('dark') === 'true')
+	{
+		var cols = document.getElementsByClassName('list-group-item');
+		for(i = 0; i < cols.length; i++) {
+		cols[i].style.backgroundColor = '#222';
+		}
+	}
+	</script>
     
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
