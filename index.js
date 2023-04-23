@@ -107,14 +107,14 @@ app.get('/manual', async function (req, res, next) {
     }
 });
 //GET API to load favorites.ejs
-app.get('/favorites', async function (req, res, next) {
+app.get('/tomorrow', async function (req, res, next) {
     try {
         //Finds all tasks currently stored in the database
         const tasks = await taskModel.find().exec();
         //Creates query out of tasklist defined above
         const query = { posts: tasks };
         //renders the list page using the tasks above
-        await res.render('favorites.ejs', query);
+        await res.render('tomorrow.ejs', query);
     } catch (error) {
         //display the error
         console.error(error);
@@ -232,8 +232,6 @@ app.get('/updateFavorite/:id', async function (req, resp) {
         if (task) {
             //Finds all tasks currently stored in the database
             const tasks = await taskModel.find().exec();
-            //Creates query out of tasklist defined above
-            const query = { posts: tasks };
         } else {
             //sends the error as a response
             resp.status(404).send({ error: `Error Updating task information` });
