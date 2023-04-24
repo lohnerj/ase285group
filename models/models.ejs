@@ -15,6 +15,10 @@ const taskSchema = new mongoose.Schema({
     favorite: {
         type: Boolean,
         default: false
+    },
+	icon: {
+        type: String,
+        default: false
     }
 });
 
@@ -37,3 +41,13 @@ module.exports = {
     taskModel,
     counterModel
 };
+
+function setDark() 
+{
+	if (localStorage.getItem('dark') === "true")
+		localStorage.setItem('dark', false);
+	else
+		localStorage.setItem('dark', true)
+		
+	location.reload();
+}

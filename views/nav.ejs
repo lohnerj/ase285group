@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
     aria-expanded="false" aria-label="Toggle navigation">
@@ -15,6 +15,40 @@
       <li class="nav-item active">
         <a class="nav-link" href="/manual">Manual<span class="sr-only">(current)</span></a>
       </li>
+	  <li class="nav-item active">
+        <button onclick="setDark()"><i class="material-icons" style="font-size:24px;">dark_mode</i></button>
+      </li>
     </ul>
   </div>
 </nav>
+
+<script>
+function setDark() 
+{
+	if (localStorage.getItem('dark') === "true")
+		localStorage.setItem('dark', false);
+	else
+		localStorage.setItem('dark', true)
+		
+	location.reload();
+}
+
+if (localStorage.getItem('dark') === "true")
+{
+	var allElements = document.querySelectorAll('*');
+
+	for (var i = 0; i < allElements.length; i++) {
+	  allElements[i].style.backgroundColor = '#222';
+	  allElements[i].style.color = '#ddd';
+	}
+}
+else
+{
+	var allElements = document.querySelectorAll('*');
+
+	for (var i = 0; i < allElements.length; i++) {
+	  allElements[i].style.backgroundColor = '#FFF';
+	  allElements[i].style.color = '#000';
+	}
+}
+</script>
