@@ -247,5 +247,3 @@ app.get('/updateFavorite/:id', async function (req, resp) {
     }
     
 });
-
-module.exports = index;
