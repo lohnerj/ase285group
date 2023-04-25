@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f18156aa-7968-403a-8f11-09a112b7c299" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/__tests__/date.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/date.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sum.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/detail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/detail.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/edit.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/edit.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/list.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/list.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/tomorrow.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/tomorrow.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +31,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Prospertagft",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/Nene/Desktop/College Stuff/Semester 6/ASE 285/todoapp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

@@ -35,7 +35,8 @@
         <!-- Update Tags Feature + Options -->
         <div class="form-group">
           <label>Update: Tags</label>
-          <select class="form-control" name="tags">
+
+          <select id="tags-select" class="form-control" name="tags" value="">
             <option value="" disabled selected>Select your option</option>
             <option value="groceries">Groceries</option>
             <option value="chores">Chores</option>
@@ -92,7 +93,7 @@
                 date: document.getElementById("date").value,		
 				icon: setIcon,
                 
-                tags: document.getElementById("tags").value
+                tags: document.getElementById("tags-select").value
             };
             $.ajax({
                 method: 'PUT',

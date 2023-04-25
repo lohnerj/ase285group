@@ -36,11 +36,8 @@
           <h7 class="card-subtitle mb-2 text-muted">
             <%= data.tags %>
           </h7>
-
-          <form action="/edit" method="POST">
             <input type="hidden" name="id" value="<%=data._id %>">
-            <button>Edit</button>
-          </form>
+            <button class="edit" data-id="<%= data._id %>">Edit</button>
         </div>
       </div>
     </div>
@@ -51,6 +48,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"></script>
+    <script>
+      const editBtns = document.querySelectorAll('.edit');
+      editBtns.forEach((btn) => {
+        const taskID = btn.dataset.id;
+        btn.addEventListener('click', () => {
+          window.location.href = `/update/${taskID}`;
+        });
+      });
+    </script>
 </body>
 
 </html>
