@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f18156aa-7968-403a-8f11-09a112b7c299" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/__tests__/api.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/munene.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sum.test.js" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/__tests__/tomorrow.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/api.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/favorite.test.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +55,7 @@
       <workItem from="1680809882996" duration="1392000" />
       <workItem from="1680886219839" duration="2233000" />
       <workItem from="1682377564057" duration="1428000" />
-      <workItem from="1682388635342" duration="3657000" />
+      <workItem from="1682388635342" duration="4040000" />
     </task>
     <servers />
   </component>
