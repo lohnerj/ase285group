@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 describe('Icon Test', () => {
   it('Should add a task with an Icon', async () => {
-	const res = await req(app);
+	const res = await req(app2);
     var request = require('request');
 	var options = {
 	  'method': 'POST',
