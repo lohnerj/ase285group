@@ -6,45 +6,44 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-	
-	<!-- Google Icons CSS -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" type="text/css" href="./resources/stylesheet.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 
   <title>Document</title>
 </head>
 
 <body>
   <%- include('nav.ejs') %>
-
     <ul class="list-group">
       <% for (var i=0; i < posts.length; i++){ %>
-	  
-		<!-- <li class="list-group-item" style=""> -->
-		<i class="material-icons" style="font-size:48px;"><%= posts[i].icon %></i>
+        <% let today = new Date() %>
+        <% let tomorrow = new Date() %> 
+        <% tommorrow = tomorrow.setDate(today.getDate() + 1) %>
+        <% let taskDate %>
+        <% //console.log(tomorrow.getUTCMonth() + 1) %>
+        <% try { %>
+        <%    //Regex code used to extract the month, day, and year from a string %>
+        <%    let taskDateString = posts[i].date %>
+        <%    taskDate = new Date(taskDateString) %>
+        <%    console.log(taskDate) %>
+        <% } catch (error) { %>
+        <%    console.log(error) %>
+        <%    taskDate == null %>
+        <% } %>
+        <% console.log(taskDate.getUTCMonth()) %>
+        <% if(tomorrow.getUTCMonth() + 1 == taskDate.getUTCMonth() + 1 && tomorrow.getUTCDate() == taskDate.getUTCDate()){ %>
         <li class="list-group-item">
-          <% if (posts[i].favorite == true) { %>
-            <button type="button" class="btn btn-secondary text favorite" data-id="<%= posts[i]._id %>"><i class="fas fa-star fa-lg text-warning"></i> Favorite</button>
-          <% } else { %>
-            <button type="button" class="btn btn-secondary text favorite" data-id="<%= posts[i]._id %>"><i class="fas fa-star fa-lg text-dark"></i> Favorite</button>
-          <% } %>
-          <h4> Title : <%= posts[i].title %>
-          </h4>
-          <p> Date : <%= posts[i].date %>
-          </p>
-          <p> ID : <%= posts[i].taskID %>
-          </p>
+          <h4> Title : <%= posts[i].title %></h4>
+          <p> Date : <%= posts[i].date %></p>
+          <p> ID : <%= posts[i].taskID %></p>
           <button class="delete" data-id="<%= posts[i]._id %>">Delete</button>
           <button class="detail" data-id="<%= posts[i]._id %>">Details</button>
           <button class="edit" data-id="<%= posts[i]._id %>">Edit</button>
-          
         </li>
         <% } %>
-    </ul>
+        <% } %>
+    </ul> 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -62,7 +61,6 @@
         }).fail((xhr, code, err) => {
           // failure
         });
-		location.reload();
       });
     </script>
     <script>
@@ -81,25 +79,6 @@
       const taskID = btn.dataset.id;
       btn.addEventListener('click', () => {
         window.location.href = `/update/${taskID}`;
-      });
-    });
-    </script>
-	<script>
-	if (localStorage.getItem('dark') === 'true')
-	{
-		var cols = document.getElementsByClassName('list-group-item');
-		for(i = 0; i < cols.length; i++) {
-		cols[i].style.backgroundColor = '#222';
-		}
-	}
-	</script>
-    <script>
-      const favoriteBtns = document.querySelectorAll('.favorite');
-      favoriteBtns.forEach((btn) => {
-      const taskID = btn.dataset.id;
-      btn.addEventListener('click', () => {
-        console.log("Event listener working")
-        window.location.href = `/updateFavorite/${taskID}`;
       });
     });
     </script>
