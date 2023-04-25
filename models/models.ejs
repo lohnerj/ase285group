@@ -15,6 +15,10 @@ const taskSchema = new mongoose.Schema({
     favorite: {
         type: Boolean,
         default: false
+    },
+    tags: {
+        type: String,
+        required: true
     }
 });
 
