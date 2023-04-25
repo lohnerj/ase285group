@@ -14,3 +14,9 @@ describe('Test the updateFavorite API', () => {
         supertest(app).get(`/updateFavorite/6`).expect(404)
     })
 });
+
+describe("Test the tomorrow API page", () => {
+    it("Given the Tomorrow API route, a 200 status code should be returned", () => {
+        supertest(app).get(`/tomorrow`).expect(200)
+    })
+})
