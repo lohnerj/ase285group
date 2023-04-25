@@ -1,11 +1,11 @@
 var request = require('request');
 const req = require('supertest');
-const app = require('../index');
+const app = require('./index');
 const mongoose = require("mongoose");
 
 describe('Icon Test', () => {
   it('Should add a task with an Icon', async () => {
-	const res = await req(app2);
+	const res = await req(app);
     var request = require('request');
 	var options = {
 	  'method': 'POST',
@@ -22,3 +22,4 @@ describe('Icon Test', () => {
 	request(options, function (error, response) {});
   });
 });
+
