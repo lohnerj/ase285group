@@ -9,6 +9,11 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+	
+	<!-- Google Icons CSS -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" type="text/css" href="./resources/stylesheet.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 
   <title>Document</title>
 </head>
@@ -34,6 +39,7 @@
         <% console.log(taskDate.getUTCMonth()) %>
         <% if(tomorrow.getUTCMonth() + 1 == taskDate.getUTCMonth() + 1 && tomorrow.getUTCDate() == taskDate.getUTCDate()){ %>
         <li class="list-group-item">
+		<i class="material-icons" style="font-size:48px;"><%= posts[i].icon %></i>
           <h4> Title : <%= posts[i].title %></h4>
           <p> Date : <%= posts[i].date %></p>
           <p> ID : <%= posts[i].taskID %></p>
@@ -82,6 +88,15 @@
       });
     });
     </script>
+	<script>
+	if (localStorage.getItem('dark') === 'true')
+	{
+		var cols = document.getElementsByClassName('list-group-item');
+		for(i = 0; i < cols.length; i++) {
+		cols[i].style.backgroundColor = '#222';
+		}
+	}
+	</script>
     
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"

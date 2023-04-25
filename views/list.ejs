@@ -25,13 +25,8 @@
       <% for (var i=0; i < posts.length; i++){ %>
 	  
 		<!-- <li class="list-group-item" style=""> -->
-		<i class="material-icons" style="font-size:48px;"><%= posts[i].icon %></i>
         <li class="list-group-item">
-          <% if (posts[i].favorite == true) { %>
-            <button type="button" class="btn btn-secondary text favorite" data-id="<%= posts[i]._id %>"><i class="fas fa-star fa-lg text-warning"></i> Favorite</button>
-          <% } else { %>
-            <button type="button" class="btn btn-secondary text favorite" data-id="<%= posts[i]._id %>"><i class="fas fa-star fa-lg text-dark"></i> Favorite</button>
-          <% } %>
+		  <i class="material-icons" style="font-size:48px;"><%= posts[i].icon %></i>
           <h4> Title : <%= posts[i].title %>
           </h4>
           <p> Date : <%= posts[i].date %>
@@ -41,6 +36,11 @@
           <button class="delete" data-id="<%= posts[i]._id %>">Delete</button>
           <button class="detail" data-id="<%= posts[i]._id %>">Details</button>
           <button class="edit" data-id="<%= posts[i]._id %>">Edit</button>
+		  <% if (posts[i].favorite == true) { %>
+            <button type="button" class="btn btn-secondary text favorite" data-id="<%= posts[i]._id %>"><i class="fas fa-star fa-lg text-warning"></i> Favorite</button>
+          <% } else { %>
+            <button type="button" class="btn btn-secondary text favorite" data-id="<%= posts[i]._id %>"><i class="fas fa-star fa-lg text-dark"></i> Favorite</button>
+          <% } %>
           
         </li>
         <% } %>
