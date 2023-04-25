@@ -30,7 +30,21 @@
         </div>
         <div class="form-group">
           <label>Update: Date</label>
-          <input id="date" type="text" class="form-control" name="date" value="<%=data.date %>"" />
+          <input id="date" type="date" class="form-control" name="date" value="<%=data.date %>" />
+        </div>
+        <!-- Update Tags Feature + Options -->
+        <div class="form-group">
+          <label>Update: Tags</label>
+          <select class="form-control" name="tags">
+            <option value="" disabled selected>Select your option</option>
+            <option value="groceries">Groceries</option>
+            <option value="chores">Chores</option>
+            <option value="fun">Fun</option>
+            <option value="exercise">Exercise</option>
+            <option value="work">Work</option>
+            <option value="school">School</option>
+            <option value="miscellaneous">Miscellaneous</option>
+          </select>
         </div>
 		<div class="form-group">
 			<p>Select an icon:</p>
@@ -76,7 +90,9 @@
             const updateTask = {
                 title: document.getElementById("title").value,
                 date: document.getElementById("date").value,		
-				icon: setIcon
+				icon: setIcon,
+                
+                tags: document.getElementById("tags").value
             };
             $.ajax({
                 method: 'PUT',

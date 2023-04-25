@@ -67,7 +67,9 @@ async function runAddPost(req, resp) {
         const totalCounter = await counterModel.findOne({name: "Total"}).exec()
         console.log(totalCounter)
         //let number = await (Math.floor(Math.random() * 200000));
-        const task = await new taskModel({ taskID: (totalCounter.count + 1), title: req.body.title, date: req.body.date, icon: req.body.icon})
+        
+        const task = await new taskModel({ taskID: (totalCounter.count + 1), title: req.body.title, date: req.body.date, tags: req.body.tags, icon:req.body.icon})
+        console.log("Added Task with tag")
         //Updates total count in Counter collection
         await counterModel.findOneAndUpdate({name: "Total"}, {count: totalCounter.count + 1});
         //Saves new task to the Database

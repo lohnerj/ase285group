@@ -19,6 +19,9 @@ const taskSchema = new mongoose.Schema({
 	icon: {
         type: String,
         default: false
+    tags: {
+        type: String,
+        required: true
     }
 });
 

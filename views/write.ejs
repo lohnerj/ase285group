@@ -26,11 +26,26 @@
       <form action="/add" method="POST">
         <div class="form-group">
           <label>What to do today</label>
-          <input type="text" class="form-control" name="title" />
+          <input type="text" class="form-control" name="title" placeholder="Task..."/>
         </div>
         <div class="form-group">
           <label>Date</label>
-          <input type="text" class="form-control" name="date" />
+          <input type="date" class="form-control" name="date" />
+        </div>
+        <div>
+          <!-- Tag Options added -->
+          <label>Tags</label>
+          <select class="form-control" name="tags" >
+            <option value="" disabled selected>Select your option</option>
+            <option value="groceries">Groceries</option>
+            <option value="chores">Chores</option>
+            <option value="fun">Fun</option>
+            <option value="exercise">Exercise</option>
+            <option value="work">Work</option>
+            <option value="school">School</option>
+            <option value="miscellaneous">Miscellaneous</option>
+          </select>
+          <!-- <input type="z" class="form-control" name="tags" placeholder="Write a tag..." /> --><br />
         </div>
 		<div class="form-group">
 			<p>Select an icon:</p>

@@ -31,8 +31,30 @@
           </h4>
           <p> Date : <%= posts[i].date %>
           </p>
+          <!-- If posts are *this* tag then *that* color will be upon it -->
+          <p
+          <% if (posts[i].tags == "fun") { %>
+            class="bg-warning text-white">
+            <% }else if(posts[i].tags == "groceries"){ %>
+                <p class="bg-primary text-white">
+              <% }else if(posts[i].tags == "miscellaneous"){ %>
+                <p class="bg-secondary text-white">
+              <% }else if(posts[i].tags == "school"){ %>
+                <p class="bg-dark text-white">
+              <% }else if(posts[i].tags == "exercise"){ %>
+                  <p class="bg-danger text-white">
+              <% }else if(posts[i].tags == "work"){ %>
+                  <p class="bg-info text-white">
+              <% }else if(posts[i].tags == "chores"){ %>
+                  <p class="bg-success text-white">
+                    <% } %>
+              
+          Tags : <%= posts[i].tags %>
+          </p>
           <p> ID : <%= posts[i].taskID %>
           </p>
+
+          
           <button class="delete" data-id="<%= posts[i]._id %>">Delete</button>
           <button class="detail" data-id="<%= posts[i]._id %>">Details</button>
           <button class="edit" data-id="<%= posts[i]._id %>">Edit</button>
@@ -51,16 +73,16 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
       $('.delete').click(function (e) {
+        $(this).parent('li').fadeOut();
         $.ajax({
           method: 'DELETE',
           url: '/delete',
           // dataset.id is from: data-id= posts[i]._id 
           data: { _id: e.target.dataset.id }
         }).done((res) => {  // we need this form to use $this 
-          $(this).parent('li').fadeOut();
           console.log('killed')
         }).fail((xhr, code, err) => {
-          // failure
+
         });
 		location.reload();
       });

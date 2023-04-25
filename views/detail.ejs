@@ -32,6 +32,10 @@
           <h6 class="card-subtitle mb-2 text-muted">
             <%= data.date %>
           </h6>
+          <!-- Added Tag Feature -->
+          <h7 class="card-subtitle mb-2 text-muted">
+            <%= data.tags %>
+          </h7>
 
           <form action="/edit" method="POST">
             <input type="hidden" name="id" value="<%=data._id %>">
