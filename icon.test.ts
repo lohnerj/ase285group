@@ -1,6 +1,6 @@
 var request = require('request');
 const req = require('supertest');
-const app = require('./index');
+const app = require('../index');
 const mongoose = require("mongoose");
 
 describe('Icon Test', () => {
